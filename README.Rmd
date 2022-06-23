@@ -1,0 +1,49 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# env2list
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of env2list is to pull objects from the global environment in a manner reminiscint of the popular `tidyselect` helpers.
+
+## Installation
+
+You can install the released version of env2list from [GitHub with:
+
+``` r
+remotes::install_github("daranzolin/env2list")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(env2list)
+library(nycflights13)
+data("airlines")
+data("airports")
+data("airmiles")
+data("airquality")
+data("CO2")
+
+ls()
+air_dfs <- env_matches("^air")
+names(air_dfs)
+str(air_dfs, max.level = 1)
+```
+
