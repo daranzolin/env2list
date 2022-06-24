@@ -33,41 +33,35 @@
 #' }
 #' @export
 env_matches <- function(match, silent = FALSE, ...) {
-  env_obj_nms <- ls(globalenv())
-  env_matches <- grep(match, env_obj_nms, value = TRUE, ...)
+  env_matches <- grep_env(match, ...)
   env2list(env_matches, silent = silent)
 }
 
 #' @rdname env_matches
 #' @export
 env_starts_with <- function(match, silent = FALSE, ...) {
-  env_obj_nms <- ls(globalenv())
-  env_matches <- grep(paste0("^", match), env_obj_nms, value = TRUE, ...)
+  env_matches <- grep_env(paste0("^", match), ...)
   env2list(env_matches, silent = silent)
 }
 
 #' @rdname env_matches
 #' @export
 env_ends_with <- function(match, silent = FALSE, ...) {
-  env_obj_nms <- ls(globalenv())
-  env_matches <- grep(paste0(match, "$"), env_obj_nms, value = TRUE, ...)
+  env_matches <- grep_env(paste0(match, "$"), ...)
   env2list(env_matches, silent = silent)
 }
 
 #' @rdname env_matches
 #' @export
 env_contains <- function(match, silent = FALSE, ...) {
-  env_obj_nms <- ls(globalenv())
-  env_matches <- grep(match, env_obj_nms, value = TRUE, ...)
-  env2list(env_matches, silent = silent)
+  env_matches(match, silent = silent, ...)
 }
 
 #' @rdname env_matches
 #' @export
 env_num_range <- function(prefix, range, silent = FALSE, ...) {
-  env_obj_nms <- ls(globalenv())
-  match <- paste0(prefix, range, collapse = "|")
-  env_matches <- grep(match, env_obj_nms, value = TRUE, ...)
+  r <- paste0(prefix, range, collapse = "|")
+  env_matches <- grep_env(r, ...)
   env2list(env_matches, silent = silent)
 }
 
@@ -79,5 +73,10 @@ env2list <- function(x, silent) {
     out[[i]] <- as.name(x[i])
   }
   lapply(out, function(x) eval(x))
+}
+
+grep_env <- function(r, ...) {
+  env_obj_nms <- ls(globalenv())
+  grep(r, env_obj_nms, value = TRUE, ...)
 }
 
