@@ -45,5 +45,10 @@ ls()
 air_dfs <- env_matches("^air")
 names(air_dfs)
 str(air_dfs, max.level = 1)
+rm(air_dfs)
+
+s_dfs <- env_ends_with("s")
+names(s_dfs)
+str(s_dfs, max.level = 1)
 ```
 

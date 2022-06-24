@@ -49,4 +49,19 @@ str(air_dfs, max.level = 1)
 #>   ..- attr(*, "spec")=List of 3
 #>   .. ..- attr(*, "class")= chr "col_spec"
 #>  $ airquality:'data.frame':  153 obs. of  6 variables:
+rm(air_dfs)
+
+s_dfs <- env_ends_with("s")
+#> airlines assigned to output.
+#> airmiles assigned to output.
+#> airports assigned to output.
+names(s_dfs)
+#> [1] "airlines" "airmiles" "airports"
+str(s_dfs, max.level = 1)
+#> List of 3
+#>  $ airlines: tbl_df [16 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ airmiles: Time-Series [1:24] from 1937 to 1960: 412 480 683 1052 1385 ...
+#>  $ airports: tbl_df [1,458 × 8] (S3: tbl_df/tbl/data.frame)
+#>   ..- attr(*, "spec")=List of 3
+#>   .. ..- attr(*, "class")= chr "col_spec"
 ```
